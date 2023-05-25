@@ -1,0 +1,92 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(45deg, #00853e, #50cB78); 
+}
+
+.open-modal-btn {
+    padding: 20px 40px;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
+
+.modal {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+.modal_inner {
+    width: 400px;
+    position: relative;
+    margin: auto;
+    background: white;
+    border-radius: 5px;
+    overflow: hidden;
+    top: 40%;
+    animation: modalShow 0.5s linear;
+}
+
+.modal_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: pink;
+    color: white;
+}
+
+.modal_body {
+    padding: 15px;
+}
+
+.modal_body h2 {
+    color: pink;
+    margin-bottom: 10px;
+}
+
+.modal_footer {
+    padding: 15px;
+    text-align: right;
+}
+
+.modal_footer button {
+    padding: 10px 20px;
+    color: white;
+    background: red;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+@keyframes modalShow {
+    from {
+        top: -200px;
+        opacity: 0;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
+}
