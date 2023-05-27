@@ -8,14 +8,15 @@ const wind = document.querySelector('.wind span');
 const sun = document.querySelector('.sun span');
 const time = document.querySelector('.time');
 const content = document.querySelector('.content');
-const body = document.querySelector('.body');
+const body = document.querySelector('body');
 
 async function changeWeatherUI(){
     let capitalSearch =  search.value.trim();
+    console.log("Country: ", capitalSearch);
     let apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${capitalSearch}&appid=1d9397712e0e080341651a2e96715e04`;
     let data = await fetch(apiURL).then(res => res.json());
 
-    if(data.cod == 200){
+    if(data.cod === 200){
         content.classList.remove('hide');
         city.innerText = data.name;
         country.innerText = data.sys.country;
@@ -28,7 +29,8 @@ async function changeWeatherUI(){
         time.innerText = new Date().toLocaleDateString('vi');
 
         body.setAttribute('class', 'hot');
-        if (temperature <= 25) {
+
+        if (temperature <= 27) {
             body.setAttribute('class', 'cool');
         }
 
@@ -37,7 +39,7 @@ async function changeWeatherUI(){
         }
 
         if (temperature <= 19) {
-            body.setAttribute('class', 'cool');
+            body.setAttribute('class', 'cold');
         }
     } else {
         content.classList.add('hide');
