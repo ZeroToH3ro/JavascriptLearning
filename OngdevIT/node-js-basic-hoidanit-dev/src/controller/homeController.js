@@ -61,9 +61,7 @@ let handleUploadFile = async (req, res) => {
 
     // Display uploaded image for user validation
     res.send(`You have uploaded this image: <hr/><img src="/image/${req.file.filename}" width="500"><hr /><a href="/upload">Upload another image</a>`);
-    // });
-}
-
+};
 
 let handleUploadMultipleFiles = async (req, res) => {
 

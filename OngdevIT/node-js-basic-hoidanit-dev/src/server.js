@@ -17,7 +17,7 @@ app.use((req, res, next) => {
     next();
 })
 
-app.use(morgan('combined'))
+app.use(morgan('combined'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

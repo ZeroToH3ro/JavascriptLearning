@@ -46,9 +46,9 @@ const initWebRoute = (app) => {
         uploadMultipleFiles(req, res, (err) => {
             if (err instanceof multer.MulterError && err.code === "LIMIT_UNEXPECTED_FILE") {
                 // handle multer file limit error here
-                res.send('LIMIT_UNEXPECTED_FILE')
+                res.send('LIMIT_UNEXPECTED_FILE');
             } else if (err) {
-                res.send(err)
+                res.send(err);
             }
 
             else {
