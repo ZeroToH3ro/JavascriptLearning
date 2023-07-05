@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "zero",
+    "password": "minh21052002@@",
+    "database": "nodejs",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "test": {
+    "username": "zero",
+    "password": "minh21052002@@",
+    "database": "nodejs",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  },
+  "production": {
+    "username": "zero",
+    "password": "minh21052002@@",
+    "database": "nodejs",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 5432
+  }
+}
