@@ -2,6 +2,7 @@ import React, {useEffect, useContext} from "react";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import {RestaurantsContext} from "../context/RestaurantsContext";
 import {useHistory} from "react-router-dom";
+import StarRating from "./StarRating";
 
 const RestaurantList = (props) => {
     let history = useHistory();
@@ -12,14 +13,14 @@ const RestaurantList = (props) => {
         const fetchData = async () => {
             try{
                 const response = await RestaurantFinder.get('/');
-                console.log(response);
+                console.log("Response from restaurants: ", response.data.data);
 
                 setRestaurants(response.data.data.restaurants);
             } catch (e) {
                 console.log(e);
             }
         }
-        fetchData().then(() => console.log("Fetch success"));
+        fetchData().then(() => console.log("Fetch success from Restaurant List"));
     }, []);
 
     const handleDelete = async (e, id) =>{
@@ -43,6 +44,19 @@ const RestaurantList = (props) => {
     const handleRestaurantSelect = async(id) => {
         history.push(`/restaurants/${id}`);
     }
+
+    const renderRating = (restaurant) => {
+        if (!restaurant.count) {
+            return <span className="text-warning">0 reviews</span>;
+        }
+        return (
+            <>
+                <StarRating rating={restaurant.id} />
+                <span className="text-warning ml-1">({restaurant.count})</span>
+            </>
+        );
+    };
+
     return (
         <div className="list-group">
             <table className="table table-hover table-dark">
@@ -67,8 +81,7 @@ const RestaurantList = (props) => {
                                 <td>{restaurant.name}</td>
                                 <td>{restaurant.location}</td>
                                 <td>{"$".repeat(restaurant.price_range)}</td>
-                                <td>Review</td>
-                                {/*<td>{renderRating(restaurant)}</td>*/}
+                                <td>{renderRating(restaurant)}</td>
                                 <td>
                                     <button
                                         onClick={(e) => handleUpdate(e, restaurant.id)}

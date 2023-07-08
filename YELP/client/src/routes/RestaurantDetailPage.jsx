@@ -5,23 +5,24 @@ import {RestaurantsContext} from "../context/RestaurantsContext";
 import RestaurantFinder from "../apis/RestaurantFinder";
 import Reviews from "../components/Reviews";
 import AddReview from "../components/AddReview";
+import StarRating from "../components/StarRating";
 
 const RestaurantDetailPage = () => {
-    const { id } = useParams();
-    const { selectedRestaurant, setSelectedRestaurant } = useContext(RestaurantsContext);
-    try{
+    const {id} = useParams();
+    const {selectedRestaurant, setSelectedRestaurant} = useContext(RestaurantsContext);
+    try {
         useEffect(() => {
-            try{
+            try {
                 const fetchData = async () => {
                     const response = await RestaurantFinder.get(`/${id}`);
-                    console.log("Data from detail page: ", response);
+                    console.log(response);
                     setSelectedRestaurant(response.data);
                 }
 
                 fetchData().then(() => {
                     console.log('Fetch data success for detail page');
                 });
-            } catch(e) {
+            } catch (e) {
                 console.log(e);
             }
 
@@ -34,11 +35,21 @@ const RestaurantDetailPage = () => {
         <div>
             {selectedRestaurant && (
                 <>
-                    <h1 className="text-center display-1">{selectedRestaurant.restaurant.name}</h1>
-                <div className="mt-3">
-                    <Reviews reviews={selectedRestaurant.reviews}/>
-                </div>
-                    <AddReview/>
+                    <h1 className="text-center display-1">
+                        {selectedRestaurant.restaurant.name}
+                    </h1>
+                    <div className="text-center">
+                        <StarRating rating={selectedRestaurant.restaurant.average_rating} />
+                        <span className="text-warning ml-1">
+              {selectedRestaurant.restaurant.count
+                  ? `(${selectedRestaurant.restaurant.count})`
+                  : "(0)"}
+            </span>
+                    </div>
+                    <div className="mt-3">
+                        <Reviews reviews={selectedRestaurant.reviews} />
+                    </div>
+                    <AddReview />
                 </>
             )}
         </div>
