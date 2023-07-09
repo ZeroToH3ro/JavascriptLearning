@@ -15,8 +15,8 @@ const AddRestaurant = () => {
                 location,
                 price_range: priceRange
             })
-            console.log("Create New Data Success: ", response.data.data);
-            addRestaurant(response.data.data.restaurants);
+            console.log("Create New Data Success: ", response.data);
+            addRestaurant(response.data.restaurants);
         }catch (e) {
             console.log(e);
         }
