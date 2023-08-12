@@ -1,4 +1,4 @@
-const Comment = require("../models/Comment");
+const Comment = require("../models/Comments");
 const Article = require("../models/Article");
 const User = require("../models/User");
 const asyncHandler = require("../middlewares/asyncHandler");
@@ -36,6 +36,34 @@ const getComments = asyncHandler(async(req, res, next) => {
     await appendFollowers(loggedUser, comment);
     res.status(200).json({comment});
 });
+
+const getComment = asyncHandler(async (req, res, next) => {
+    const {slug, id} = req.params;
+    const {loggedUser} = req;
+
+    const article = await Article.findOne({
+        where: {slug: slug}
+    });
+
+    if(!article) return next(new ErrorResponse("Article not found", 404));
+
+    const comment = await Comment.findOne({
+        where: {slug: slug},
+        include: [
+            {
+                model: User,
+                as: "author",
+                attributes: ["username", "bio", "image"]
+            }
+        ]
+    });
+
+    if(!comment) return next(new ErrorResponse("Comment not found", 404));
+
+    await appendFollowers(loggedUser, comment);
+
+    res.status(200).json({comment});
+})
 
 const createComment = asyncHandler(async(req, res, next) => {
     const { body } = req.body.comment;
@@ -95,6 +123,7 @@ const deleteComment = asyncHandler(async(req,res, next) => {
 
 module.exports = {
     getComments,
+    getComment,
     createComment,
     deleteComment
 }

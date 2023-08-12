@@ -11,4 +11,4 @@ const getTags = async(req, res, next) => {
     res.status(200).json({ tags });
 }
 
-module.exports = getTags;
+module.exports = {getTags};

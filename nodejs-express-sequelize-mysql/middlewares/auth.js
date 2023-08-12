@@ -2,7 +2,7 @@ const User = require("../models/User");
 const { verify } = require("../util/jwt");
 const ErrorResponse = require("../util/errorResponse");
 
-exports.protect = async (req, res, next) => {
+const protect = async (req, res, next) => {
   try {
     const { headers } = req;
     if (!headers || !headers["authorization"]) return next();
@@ -28,3 +28,5 @@ exports.protect = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = {protect}
