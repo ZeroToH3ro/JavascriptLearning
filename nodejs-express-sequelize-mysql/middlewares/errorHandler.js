@@ -10,7 +10,7 @@ const errorHandler = (err, req, res, next) => {
     // Log to console for dev
     console.log(err.message.red);
     console.log(err.stack.red);
-
+    //Internal error code
     const statusCode = err.statusCode ? err.statusCode : 500;
 
     res.status(statusCode).json({

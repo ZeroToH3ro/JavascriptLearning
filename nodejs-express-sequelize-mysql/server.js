@@ -108,7 +108,17 @@ Tag.belongsToMany(Article, {
 
 const sync = async () => await sequelize.sync({ force: true });
 sync().then(() => {
-    console.log('DB created')
+    User.create({
+        email: "test@gmail.com",
+        password: "123456",
+        username: "test"
+    });
+    User.create({
+        email: "test1@gmail.com",
+        password: "123456",
+        username: "test1"
+    })
+    console.log('DB created');
 });
 
 app.listen(port, () => {

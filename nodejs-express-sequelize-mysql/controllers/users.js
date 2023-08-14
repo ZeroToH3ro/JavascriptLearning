@@ -57,7 +57,7 @@ module.exports.loginUser = asyncHandler(async (req, res, next) => {
     user.dataValues.bio = null;
     user.dataValues.image = null;
 
-    res.status(200).json({ user });
+    res.status(200).json({ user, message: "Login User Success" });
 });
 
 module.exports.getCurrentUser = asyncHandler(async (req, res, next) => {
