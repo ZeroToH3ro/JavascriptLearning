@@ -41,7 +41,6 @@ const initWebRoute = (app) => {
 
     router.get('/upload', homeController.getUploadFilePage);
     router.post('/upload-profile-pic', upload.single('profile_pic'), homeController.handleUploadFile)
-
     router.post('/upload-multiple-images', (req, res, next) => {
         uploadMultipleFiles(req, res, (err) => {
             if (err instanceof multer.MulterError && err.code === "LIMIT_UNEXPECTED_FILE") {
@@ -56,7 +55,7 @@ const initWebRoute = (app) => {
                 next();
             }
         })
-    }, homeController.handleUploadMultipleFiles)
+    }, homeController.handleUploadMultipleFiles);
 
 
 

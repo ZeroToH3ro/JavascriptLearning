@@ -3,6 +3,10 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+.btn-add {
+    margin: 2rem 0;
+}
+
 .topnav {
     overflow: hidden;
     background-color: #333;
@@ -41,7 +45,6 @@ body {
     cursor: pointer;
 }
 
-
 .update-user-container {
     padding: 15px;
     text-align: center;
@@ -66,4 +69,9 @@ body {
 
 hr {
     border-top: 3px solid #eee !important;
+}
+
+.footer {
+    margin: 2rem;
+    text-align: center;
 }

@@ -1,0 +1,21 @@
+<div class="update-user-container">
+    <form action="/update-user" method="POST">
+        <div>
+            <label>User Name:</label>
+            <input name="username" value="<%= dataUser.username %>" />
+        </div>
+        <div>
+            <label>Email:</label>
+            <input name="email" value="<%= dataUser.email %>" />
+        </div>
+        <div>
+            <label>Address:</label>
+            <input name="address" value="<%= dataUser.address %>" />
+        </div>
+        <input type="text" value="<%= dataUser.id %>" hidden name="id" />
+        <div>
+            <button type="submit" id="btn-save">Save</button>
+        </div>
+    </form>
+</div>
+<script type="text/javascript" defer src="/js/notify.update.js"></script>
